@@ -8,7 +8,7 @@ class VaultFile:
     extension: str
 
     def is_attachment(self) -> bool:
-        return self.extension != "md"
+        return self.extension != "md" or self.extension != "canvas"
 
 
 def crawl_dir(path: str) -> list[VaultFile]:
