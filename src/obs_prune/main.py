@@ -7,8 +7,7 @@ def main():
     path = args.vault
     files = crawl_dir(path)
     for file in files:
-        if not file.is_attachment():
-            print(file.full_path)
+        file.scan_for_attachments()
 
 
 if __name__ == "__main__":
