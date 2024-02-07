@@ -1,4 +1,6 @@
 import os
+import platform
+
 from dataclasses import dataclass
 
 extentions_to_ignore = ["md", "canvas"]
@@ -15,10 +17,13 @@ class VaultFile:
 
 def crawl_dir(path: str) -> list[VaultFile]:
     files = []
+    slash = "/"
+    if platform.platform() == "Windows":
+        slash = "\\"
     for root, _, file_names in os.walk(path):
         for f in file_names:
             # files.append({"directory": root, "files": file_names})
-            full_path = root + "/" + f
+            full_path = root + slash + f
             extension = f.split(".")[-1]
             # Throw away any .DS_Store files we find
             if extension == "DS_Store":
