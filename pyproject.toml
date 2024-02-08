@@ -1,10 +1,10 @@
 [project]
 name = "oprune"
-version = "0.1.2"
+version = "0.1.3"
 description = "Cleans up dangling attachments in your Obsidian Vault"
 authors = [{ name = "James Mark", email = "james.david.mark@gmail.com" }]
 dependencies = []
-requires-python = ">=3.12"
+requires-python = ">=3.9"
 readme = "README.md"
 license = { text = "MIT" }
 
