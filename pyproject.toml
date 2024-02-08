@@ -1,6 +1,6 @@
 [project]
 name = "obs_prune"
-version = "0.1.0"
+version = "0.1.1"
 description = "Cleans up dangling attachments in your Obsidian Vault"
 authors = [{ name = "James Mark", email = "james.david.mark@gmail.com" }]
 dependencies = []
