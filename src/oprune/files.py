@@ -51,7 +51,7 @@ class VaultFile:
         return attachments
 
 
-def crawl_dir(path: str, slash: str) -> list[VaultFile]:
+def crawl_dir(path: str) -> list[VaultFile]:
     """Crawls the provided path returning a list of all files found
     Ignores files in .obsidian and .DS_Store files
 
@@ -66,7 +66,7 @@ def crawl_dir(path: str, slash: str) -> list[VaultFile]:
     for root, _, file_names in os.walk(path):
         for f in file_names:
             # files.append({"directory": root, "files": file_names})
-            full_path = root + slash + f
+            full_path = root + os.sep + f
             extension = f.split(".")[-1]
             # Throw away any .DS_Store files we find
             if extension == "DS_Store":
