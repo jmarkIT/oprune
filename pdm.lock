@@ -2,10 +2,10 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default", "linting", "testing"]
+groups = ["default", "linting", "testing", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:0ec04d27438b3f8f39aac79c09bc3294a381a912bd5e7729a9898ee39ffd22c0"
+content_hash = "sha256:c138cedc4cc955788d22b463fd83750adce8ba13a97a707b1131b5c7052a7ae7"
 
 [[package]]
 name = "astroid"

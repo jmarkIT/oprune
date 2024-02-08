@@ -12,19 +12,16 @@ license = { text = "MIT" }
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
+[project.scripts]
+oprune = "obs_prune.main:main"
 
 [tool.pdm]
 distribution = true
 
 [tool.pdm.dev-dependencies]
-linting = [
-    "ruff>=0.2.1",
-    "isort>=5.13.2",
-    "pylint>=3.0.3",
-]
-testing = [
-    "pytest>=8.0.0",
-]
+linting = ["ruff>=0.2.1", "isort>=5.13.2", "pylint>=3.0.3"]
+testing = ["pytest>=8.0.0"]
+dev = []
 
 [tool.pdm.scripts]
 start = "python src/obs_prune/main.py"
