@@ -6,6 +6,8 @@ import re
 
 from dataclasses import dataclass
 
+LINK_REGEX = re.compile(r"!\[{2}([^\]]+)\]]")
+
 
 @dataclass
 class VaultFile:
@@ -36,12 +38,10 @@ class VaultFile:
         if self.is_attachment:
             return attachments
 
-        regex = re.compile(r"!\[{2}([^\]]+)\]]")
-
         with open(self.full_path, encoding="utf8") as f:
             lines = f.readlines()
             for line in lines:
-                matches = regex.findall(line)
+                matches = LINK_REGEX.findall(line)
                 if not matches:
                     continue
                 for match in matches:
