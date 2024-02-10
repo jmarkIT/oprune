@@ -15,7 +15,7 @@ class VaultFile:
 
     full_path: str
 
-    EXTENSIONS_TO_IGNORE = ("md", "canvas")
+    EXTENSIONS_TO_IGNORE = (".md", ".canvas")
 
     @property
     def extension(self) -> str:
