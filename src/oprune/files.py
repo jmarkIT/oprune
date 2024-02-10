@@ -14,9 +14,12 @@ class VaultFile:
     """Class to represent a file in an Obsidian vault"""
 
     full_path: str
-    extension: str
 
     EXTENSIONS_TO_IGNORE = ("md", "canvas")
+
+    @property
+    def extension(self) -> str:
+        return os.path.splitext(self.full_path)[-1]
 
     @property
     def is_attachment(self) -> bool:
@@ -58,7 +61,6 @@ def crawl_dir(path: str) -> list[VaultFile]:
 
     Args:
         path (str): path to directory to crawl
-        slash (str): which slash to use in the path '/' for posix systems, '\\' for Windows
 
     Returns:
         list[VaultFile]: list of all files found as ObsidianFile type
@@ -67,15 +69,14 @@ def crawl_dir(path: str) -> list[VaultFile]:
     for root, _, file_names in os.walk(path):
         for f in file_names:
             # files.append({"directory": root, "files": file_names})
-            full_path = root + os.sep + f
-            extension = f.split(".")[-1]
             # Throw away any .DS_Store files we find
-            if extension == "DS_Store":
+            if f.endswith("DS_Store"):
                 continue
             # We don't want to accidentally delete anything in Obsidian's configuration directory
             if ".obsidian" in root:
                 continue
-            files.append(VaultFile(full_path, extension))
+            full_path = os.path.join(root, f)
+            files.append(VaultFile(full_path))
 
     return files
 
