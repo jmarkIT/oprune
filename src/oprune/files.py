@@ -19,6 +19,11 @@ class VaultFile:
 
     @property
     def extension(self) -> str:
+        """Returns file extension
+
+        Returns:
+            str: file extension
+        """
         return os.path.splitext(self.full_path)[-1]
 
     @property
