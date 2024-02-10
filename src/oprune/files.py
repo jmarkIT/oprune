@@ -76,7 +76,16 @@ def delete_file(path: str):
         print(f"Skipping file {file}")
 
 
-def scan_for_attachments(path: str):
+def scan_for_attachments(path: str) -> list[str]:
+    """Scan the contents of a document looking for attachments. Returns a list
+    of the filenames of all attachments found
+
+    Args:
+        path (str): full filepath of the file to scan
+
+    Returns:
+        list[str]: a list of all attachments found in the file
+    """
     attachments = []  # type: list[str]
     # No reason to look for attachments in attachments
 
