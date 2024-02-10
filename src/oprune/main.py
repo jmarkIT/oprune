@@ -15,7 +15,7 @@ def main():
         attachments += file.scan_for_attachments()
 
     for file in all_files:
-        if file.is_attachment():
+        if file.is_attachment:
             file_name = file.full_path.split(os.sep)[-1]
             if file_name not in attachments:
                 delete_file(file.full_path)

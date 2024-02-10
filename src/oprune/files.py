@@ -6,8 +6,6 @@ import re
 
 from dataclasses import dataclass
 
-extentions_to_ignore = ["md", "canvas"]
-
 
 @dataclass
 class VaultFile:
@@ -16,13 +14,16 @@ class VaultFile:
     full_path: str
     extension: str
 
+    EXTENSIONS_TO_IGNORE = ("md", "canvas")
+
+    @property
     def is_attachment(self) -> bool:
         """Checks if the file is an attachments, and returns a bool
 
         Returns:
             bool: Is this file an attachment
         """
-        return self.extension not in extentions_to_ignore
+        return self.extension not in self.EXTENSIONS_TO_IGNORE
 
     def scan_for_attachments(self) -> list[str]:
         """Looks for attachments referenced in the file
@@ -32,7 +33,7 @@ class VaultFile:
         """
         attachments = []  # type: list[str]
         # No reason to look for attachments in attachments
-        if self.is_attachment():
+        if self.is_attachment:
             return attachments
 
         regex = re.compile(r"!\[{2}([^\]]+)\]]")
