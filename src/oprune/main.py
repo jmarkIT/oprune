@@ -1,7 +1,7 @@
 """A package to delete unreferenced attachments in an Obsidian vault"""
 import os
 
-from oprune.files import crawl_dir, delete_file
+from oprune.files import crawl_dir, scan_for_attachments, delete_file
 from oprune.args import set_args
 
 
@@ -12,7 +12,8 @@ def main():
     all_files = crawl_dir(path)
     attachments = []
     for file in all_files:
-        attachments += file.scan_for_attachments()
+        if not file.is_attachment:
+            attachments += scan_for_attachments(file.full_path)
 
     for file in all_files:
         if file.is_attachment:

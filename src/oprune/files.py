@@ -35,30 +35,6 @@ class VaultFile:
         """
         return self.extension not in self.EXTENSIONS_TO_IGNORE
 
-    def scan_for_attachments(self) -> list[str]:
-        """Looks for attachments referenced in the file
-
-        Returns:
-            list[str]: list of all attachments referenced in the file
-        """
-        attachments = []  # type: list[str]
-        # No reason to look for attachments in attachments
-        if self.is_attachment:
-            return attachments
-
-        with open(self.full_path, encoding="utf8") as f:
-            lines = f.readlines()
-            for line in lines:
-                matches = LINK_REGEX.findall(line)
-                if not matches:
-                    continue
-                for match in matches:
-                    match = match.strip("[")
-                    match = match.strip("]")
-                    attachments.append(match)
-
-        return attachments
-
 
 def crawl_dir(path: str) -> list[VaultFile]:
     """Crawls the provided path returning a list of all files found
@@ -98,3 +74,15 @@ def delete_file(path: str):
         file.unlink()
     else:
         print(f"Skipping file {file}")
+
+
+def scan_for_attachments(path: str):
+    attachments = []  # type: list[str]
+    # No reason to look for attachments in attachments
+
+    with open(path, encoding="utf8") as f:
+        for line in f.readlines():
+            for match in LINK_REGEX.findall(line):
+                attachments.append(match.lstrip("[").rstrip("]"))
+
+    return attachments
